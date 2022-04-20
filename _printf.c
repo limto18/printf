@@ -1,5 +1,5 @@
-#include <stdarg.h>
-#include <main.h>
+#include "main.h"
+#include <stddef.h>
 
 /**
  * _printf - produces output according to a format
@@ -16,7 +16,13 @@ int _printf(const char *format, ... )
 
     va_start(args,format);
 
-    While (format[i] != '\0')
+    if (format == NULL)
+    {
+        va_end(args);
+        return (-1);
+    }
+
+    while (format[i] != '\0')
     {
         if (format[i] != '%')
         {
@@ -34,9 +40,9 @@ int _printf(const char *format, ... )
             }
             else if (format[i+1] == 's')
             {
-                i++
-                str = va_arg(args,char*)
-                k=0
+                i++;
+                str = va_arg(args,char*);
+                k=0;
                 while(str[k] != '\0')
                 {
                     _putchar(str[k]);
@@ -52,7 +58,7 @@ int _printf(const char *format, ... )
             }
             
         }
-        i++
+        i++;
     }
 
     va_end(args);
